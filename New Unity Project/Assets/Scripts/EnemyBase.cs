@@ -14,7 +14,7 @@ public class EnemyBase : MonoBehaviour
     public delegate void Action(uint reward);
     // Событие смерти моба
     public static event Action isDie;
-    [Range(0, 10000)]
+    [Range(0, 900000)]
     public float forceRepulsion;
 
     void Start ()
@@ -29,7 +29,7 @@ public class EnemyBase : MonoBehaviour
         enemy_health = 0;
     }
 
-    /// <summary>
+    /// <summary> 
     /// Нанесение урона игроку
     /// </summary>
     /// <param name="collision"></param>
@@ -40,9 +40,9 @@ public class EnemyBase : MonoBehaviour
                 if (contact.normal.y >= 0)
                 {
                     collision.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
-                   ////
+                  
                    //доделать херню связанную с отталкиванием героя
-                   // collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f * -1f, 1f) * forceRepulsion);//переделать как отдельные переменные
+                   collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(7f * -1f, 0.4f) * forceRepulsion);//переделать как отдельные переменные
 
                     return;
                 }

@@ -35,3 +35,6 @@ sysinfo.txt
 New Unity Project/.vs/New Unity Project/v15/Server/sqlite3/storage.ide
 New Unity Project/.vs/New Unity Project/v15/Server/sqlite3/storage.ide-shm
 New Unity Project/.vs/New Unity Project/v15/Server/sqlite3/storage.ide-wal
+*.ide
+*.ide-shm
+*.ide-wal
