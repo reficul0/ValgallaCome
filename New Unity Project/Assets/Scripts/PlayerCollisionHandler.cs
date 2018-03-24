@@ -14,12 +14,20 @@ public class PlayerCollisionHandler : MonoBehaviour {
 		
 	}
  
-    /*
+    /// <summary>
+    /// Уничтожаем врага при прышке ему на голову(mario style)
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Money")){
-            GetComponent<PlayerStats>().IncreacseMoney();
-            Destroy(collision.gameObject);
-        }
-    }*/
+        if (collision.gameObject.CompareTag("Enemy"))
+            foreach (var contact in collision.contacts)
+                if (contact.normal.y > 0)
+                {
+                    collision.gameObject.GetComponent<EnemyBase>().Die();
+                    return;
+                }  
+           // Destroy(collision.gameObject);
+        
+    }
 }

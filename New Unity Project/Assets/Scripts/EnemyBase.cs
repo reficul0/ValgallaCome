@@ -21,7 +21,12 @@ public class EnemyBase : MonoBehaviour
         enemy_health = 3;
         reward = 5;
     }
-	
+
+    public void Die()
+    {
+        enemy_health = 0;
+    }
+
 	void FixedUpdate ()
     {
         if (enemy_health == 0)
