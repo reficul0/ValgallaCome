@@ -9,27 +9,17 @@ public class PlayerStats : MonoBehaviour
     private short health;
     private uint money;
 
+    private HpBar hpBar;
+
     public delegate void Action();
     // Событие, вызываемое во время убийства персонажей
     public static event Action isDie;
 
-    /// <summary>
-    /// Вызывается когда объект появляется на сцене
-    /// </summary>
-    private void OnEnable()
-    { 
-        // Привязываем обработчик события убийства
-        EnemyBase.isDie += IncreacseMoney;//Enemy.isDie
-    }
+    public delegate void ActionDamage(uint damage);
+    // Событие, вызываемое во время получения игроком урона
+    public static event ActionDamage takeDamage;
 
-    /// <summary>
-    /// Вызывается когда объект уходит со сцены
-    /// </summary>
-    private void OnDisable()
-    {
-        // Отвязываем обработчик события убийства
-        EnemyBase.isDie -= IncreacseMoney;
-    }
+
 
     void Start()
     {
@@ -56,9 +46,12 @@ public class PlayerStats : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    public void TakeDamage() {
+
+    public void TakeDamage(uint damage) {
         --health;
-        Debug.Log(health);
+        takeDamage(damage);
+
+       // Debug.Log(health);
     }
     /// <summary>
     /// Вызывается по сигналу смерти моба

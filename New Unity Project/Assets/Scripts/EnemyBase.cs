@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-
-    [Range(3,0)]
-    public ushort enemy_health;
-
+    
+    private ushort enemy_health;
+    private uint damage;
     // Награда за убийство моба
     // TODO: в зависимости от класса моба должа меняться
     private uint reward;
@@ -20,6 +19,7 @@ public class EnemyBase : MonoBehaviour
     {
         enemy_health = 3;
         reward = 5;
+        damage = 1;
     }
 
     public void Die()
@@ -37,7 +37,7 @@ public class EnemyBase : MonoBehaviour
             foreach (var contact in collision.contacts)
                 if (contact.normal.y >= 0)
                 {
-                    collision.gameObject.GetComponent<PlayerStats>().TakeDamage();
+                    collision.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
                     return;
                 }
         }
