@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     private uint health;
     private uint money;
 
+    public static PlayerStats instance; 
    // private HpBar hpBar;
 
     public delegate void Action();
@@ -42,6 +43,7 @@ public class PlayerStats : MonoBehaviour
         // Установим значения по умолчанию
         health = 3;
         money = 0;
+        instance = this;
     }
 
     // Update is called once per frame

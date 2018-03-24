@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    [Range(0, 10)] public float speed;
+    [Range(0, 15)] public float speed;
 
-    [Range(0, 50000)] public float jumpPower;
+    [Range(0, 900000)] public float jumpPower;
 
     private Rigidbody2D rb = null;
     //private Animator anim = null;
