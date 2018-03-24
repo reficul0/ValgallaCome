@@ -27,7 +27,22 @@ public class EnemyBase : MonoBehaviour
         enemy_health = 0;
     }
 
-	void FixedUpdate ()
+    /// <summary>
+    /// Нанесение урона игроку
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) {
+            foreach (var contact in collision.contacts)
+                if (contact.normal.y >= 0)
+                {
+                    collision.gameObject.GetComponent<PlayerStats>().TakeDamage();
+                    return;
+                }
+        }
+    }
+    void FixedUpdate ()
     {
         if (enemy_health == 0)
         {

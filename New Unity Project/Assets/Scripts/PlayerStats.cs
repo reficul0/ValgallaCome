@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -51,10 +52,14 @@ public class PlayerStats : MonoBehaviour
         {
             //TODO: Воспроизводим анимацию смерти
             //TODO: text "u die ballsucker"
-            //TODO: reload scene or load scene "valhalla"
+            //TODO: reload scene or load scene "valhalla
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
+    public void TakeDamage() {
+        --health;
+        Debug.Log(health);
+    }
     /// <summary>
     /// Вызывается по сигналу смерти моба
     /// и дает денежную награду за него герою
