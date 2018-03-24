@@ -15,6 +15,8 @@ public class EnemyBase : MonoBehaviour
     // Событие смерти моба
     public static event Action isDie;
 
+
+
     void Start ()
     {
         enemy_health = 3;

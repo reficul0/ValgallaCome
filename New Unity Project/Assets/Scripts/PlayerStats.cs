@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
     private short health;
     private uint money;
 
-    private HpBar hpBar;
+   // private HpBar hpBar;
 
     public delegate void Action();
     // Событие, вызываемое во время убийства персонажей
@@ -19,7 +19,23 @@ public class PlayerStats : MonoBehaviour
     // Событие, вызываемое во время получения игроком урона
     public static event ActionDamage takeDamage;
 
+    /// <summary>
+    /// Вызывается когда объект появляется на сцене
+    /// </summary>
+    private void OnEnable()
+    {
+        // Привязываем обработчик события убийства
+        EnemyBase.isDie += IncreacseMoney;//Enemy.isDie
+    }
 
+    /// <summary>
+    /// Вызывается когда объект уходит со сцены
+    /// </summary>
+    private void OnDisable()
+    {
+        // Отвязываем обработчик события убийства
+        EnemyBase.isDie -= IncreacseMoney;
+    }
 
     void Start()
     {
