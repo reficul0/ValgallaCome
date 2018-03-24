@@ -1,0 +1,47 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour {
+
+    [Range(0, 10)] public float speed;
+
+    [Range(0, 50000)] public float jumpPower;
+
+    private Rigidbody2D rb = null;
+    //private Animator anim = null;
+    private Vector2 velocity;
+
+    private bool isGrounded = false;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        //anim = GetComponent<Animator>();
+    }
+    private void FixedUpdate()
+    {
+        velocity = rb.velocity;
+        velocity.x = speed * Input.GetAxis("Horizontal");
+        rb.velocity = velocity;
+
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space) == true){
+            rb.AddForce(jumpPower * transform.up);
+            isGrounded = false;
+          //  anim.SetBool("Jump", true);
+        }
+
+        if (rb.velocity.x > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (rb.velocity.x < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+
+       // anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isGrounded = true;
+       // anim.SetBool("Jump", false);
+    }
+
+}
