@@ -10,6 +10,8 @@ public class HpBar : MonoBehaviour {
     // Событие, вызываемое во время получения игроком урона
     public static event ActionDamage takeDamage;
 
+    private uint countOfEnebledBars;
+
     /// <summary>
     /// Вызывается когда объект появляется на сцене
     /// </summary>
@@ -29,13 +31,21 @@ public class HpBar : MonoBehaviour {
     }
 
     private void Start()
-    { 
-        //
+    {
+        countOfEnebledBars = 3;
         hpCircles = GetComponentsInChildren<SpriteRenderer>();
     }
-    public void HideCircle(uint i)//получает кривую цифру из расчетов хп и фантазии больной головы тупого прогера
+    public void HideCircle(uint damage)//получает кривую цифру из расчетов хп и фантазии больной головы тупого прогера
     {
-        if (i < 0 && i > hpCircles.Length) { return; }
-        hpCircles[i + 1].gameObject.SetActive(false);
+        if (hpCircles.Length == 1) { return; }
+        for (int i = 0; i < damage; ++i)
+        {
+            hpCircles[countOfEnebledBars - 1].gameObject.SetActive(false);
+            --countOfEnebledBars;
+
+            //if (countOfEnebledBars == 0)
+            //{
+            //}
+        }
     }
 }
