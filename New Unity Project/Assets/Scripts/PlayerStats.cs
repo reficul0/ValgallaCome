@@ -2,42 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour{
-
-    public delegate void Action();
-    public static event Action isDie;
+public class PlayerStats : MonoBehaviour
+{
 
     private short health;
+    private uint money;
 
-    private int money;
+    public delegate void Action();
+    // Событие, вызываемое во время убийства персонажей
+    public static event Action isDie;
 
-    private void OnEnable() { 
+    /// <summary>
+    /// Вызывается когда объект появляется на сцене
+    /// </summary>
+    private void OnEnable()
+    { 
+        // Привязываем обработчик события убийства
         EnemyBase.isDie += IncreacseMoney;//Enemy.isDie
     }
-    private void OnDisable(){
+
+    /// <summary>
+    /// Вызывается когда объект уходит со сцены
+    /// </summary>
+    private void OnDisable()
+    {
+        // Отвязываем обработчик события убийства
         EnemyBase.isDie -= IncreacseMoney;
     }
 
-    void Start(){
+    void Start()
+    {
+        // Установим значения по умолчанию
         health = 3;
         money = 0;
     }
 
     // Update is called once per frame
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
+        // Умираем если здоровье упало до 0
         if (health == 0)
             Die();
     }
-    private void Die(){
-        if (health == 0){
-            //TODO
-            //animation of die
-            //text "u die ballsucker"
-            //reload scene or load scene "valhalla"
+
+    private void Die()
+    {
+        if (health == 0)
+        {
+            //TODO: Воспроизводим анимацию смерти
+            //TODO: text "u die ballsucker"
+            //TODO: reload scene or load scene "valhalla"
         }
     }
 
-    public void IncreacseMoney(int reward) {
+    /// <summary>
+    /// Вызывается по сигналу смерти моба
+    /// и дает денежную награду за него герою
+    /// </summary>
+    /// <param name="reward">Количество денег</param>
+    public void IncreacseMoney(uint reward)
+    {
         money += reward;
         Debug.Log(money);
     }
