@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
 
-    private short health;
+    private uint health;
     private uint money;
 
    // private HpBar hpBar;
@@ -64,7 +64,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void TakeDamage(uint damage) {
-        --health;
+        health -= damage;
         takeDamage(damage);
 
        // Debug.Log(health);
