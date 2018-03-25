@@ -34,3 +34,4 @@ sysinfo.txt
 *.unitypackage
 New Unity Project/Library/metadata/e6/e69a832fca6e2164fbd68c8755dffb90
 New Unity Project/Library/
+*.meta
